@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     console.log("hashing password");
-    this.password = bcrypt.hash(this.password, HASH_ROUNDS);
+    this.password = await bcrypt.hash(this.password, HASH_ROUNDS);
   }
   next();
 });
@@ -57,4 +57,4 @@ userSchema.methods.generateAccessToken = function () {
   );
 };
 const User = mongoose.model("User", userSchema);
-module.exports=User;
+module.exports = User;
