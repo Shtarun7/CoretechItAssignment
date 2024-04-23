@@ -1,7 +1,6 @@
 const initializeTest = async (req, res) => {
   try {
     req.session.test_started = true;
-
     return res.status(200).json({
       message: "test started",
       data: null,

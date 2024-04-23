@@ -117,7 +117,17 @@ const userLogin = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-    console.log("logout");
+    console.log("logout user");
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+    await req.session.destroy();
+    return res.status(200).clearCookie("accessToken", options).json({
+      message: "User logged out",
+      data: null,
+      success: "true",
+    });
   } catch (e) {}
 };
 

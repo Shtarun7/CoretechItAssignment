@@ -2,7 +2,7 @@ const Question = require("../models/question.model");
 
 const getQuestions = async (req, res) => {
   try {
-    if (!req.session.test_started) {
+    if (!req.session?.test_started) {
       return res.status(400).json({
         message: "You have not started the test yet",
         data: null,
